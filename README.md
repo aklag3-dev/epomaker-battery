@@ -87,7 +87,7 @@ shell extension). Debian/Ubuntu:
 
 ## Limitations — please read before installing
 
-Honest boundaries, each learned the hard way against real hardware:
+Honest boundaries, each learned the hard way against real hardware (the full research story behind them is in [`docs/investigation/`](docs/investigation/)):
 
 1. **Battery is only visible over Bluetooth.** Neither keyboard sends its
    battery level over the USB cable or the 2.4G dongle — the firmware simply
@@ -189,7 +189,7 @@ udev rules. `--once` on either script prints a plain status snapshot and exits
 | `install-setup.sh` | Guided installer for the rules (root) |
 | `check.sh` | Diagnostics snapshot — permissions, battery paths, BT pairing |
 | `dist/` | Packaging: `install.sh` / `uninstall.sh` (tarball) + `build-package.sh` (builds the `.deb` and tarball) |
-| `docs/` | Screenshot |
+| `docs/` | Screenshot + `docs/investigation/` — the sanitized hardware-research log behind every limitation |
 
 ## Troubleshooting
 
