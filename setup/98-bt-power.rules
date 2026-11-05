@@ -1,0 +1,6 @@
+# Keep the internal Bluetooth adapter awake — fixes stale BLE links after
+# the keyboard deep-sleeps (TH33 symptom: Connected: yes but keys stop arriving).
+# Intel dual-mode controller on the ThinkPad P50:
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", ATTR{idProduct}=="0a2b", ATTR{power/autosuspend}="-1"
+# Generic fallback: any Intel BT USB interface present gets the same treatment.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", ATTR{power/autosuspend}="-1"

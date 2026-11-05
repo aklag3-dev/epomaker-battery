@@ -1,0 +1,15 @@
+[Unit]
+Description=EPOMAKER keyboard battery tray applet (MATE)
+Documentation=https://github.com/aklag3-dev/epomaker-battery
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/epomaker-battery/battery/battery-tray.py
+Restart=on-failure
+RestartSec=15
+PassEnvironment=DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS XDG_RUNTIME_DIR
+
+[Install]
+WantedBy=graphical-session.target

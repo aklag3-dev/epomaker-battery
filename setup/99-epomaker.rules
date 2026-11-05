@@ -1,0 +1,19 @@
+# EPOMAKER keyboards — HID access for VIA/WebHID (and our battery daemon)
+# Install: sudo cp this file to /etc/udev/rules.d/99-epomaker.rules && sudo udevadm control --reload && sudo udevadm trigger
+# Verify:  ls -l /dev/hidraw*  (nodes below should become 0666 when device is connected)
+
+# EPOMAKER x AULA F75 Ultra — wired (WB32FQ95, VID/PID confirmed from vendor QMK source)
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fffe", ATTRS{idProduct}=="00a9", MODE="0666"
+# EPOMAKER x AULA F75 Ultra — 2.4G dongle (Microdia/Sonix, confirmed on this machine)
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="fefe", MODE="0666"
+
+# EPOMAKER TH33 — wired (confirmed from vendor QMK source)
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="30aa", MODE="0666"
+# EPOMAKER TH33 — 2.4G receiver (confirmed: vendor firmware manufacturer "RDMCTMZT")
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="3002", MODE="0666"
+
+# USBHID device nodes too (input layer — needed by keyd/input-remapper in some setups;
+# also lets us reset/wake the device without sudo)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="fefe", MODE="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="3002", MODE="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="30aa", MODE="0666"

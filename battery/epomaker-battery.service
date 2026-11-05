@@ -1,0 +1,17 @@
+[Unit]
+Description=EPOMAKER keyboard battery watcher
+Documentation=https://github.com/aklag3-dev/epomaker-battery
+After=graphical-session.target dbus.socket
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/epomaker-battery/battery/battery-watch.py
+Restart=on-failure
+RestartSec=10
+
+# User session environment so notify-send reaches the desktop session.
+PassEnvironment=DISPLAY WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS
+
+[Install]
+WantedBy=default.target
