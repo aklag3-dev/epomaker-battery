@@ -25,8 +25,8 @@ on Linux two things are needlessly hard:
 
 While investigating the second problem, we discovered something useful about
 the first: **both keyboards broadcast their battery over Bluetooth** (standard
-GATT Battery Service), and Linux's `upower` already sees it — it just nobody
-surfacing it in the desktop. This project surfaces it.
+GATT Battery Service), and Linux's `upower` already sees it — but nothing in
+the desktop was surfacing it. This project surfaces it.
 
 ## What you get
 
@@ -87,8 +87,7 @@ shell extension). Debian/Ubuntu:
 
 ## Limitations — please read before installing
 
-Honest boundaries, learned the hard way during the investigation documented in
-this repo:
+Honest boundaries, each learned the hard way against real hardware:
 
 1. **Battery is only visible over Bluetooth.** Neither keyboard sends its
    battery level over the USB cable or the 2.4G dongle — the firmware simply
@@ -96,8 +95,8 @@ this repo:
    sources and live HID probing). A keyboard used via dongle/cable shows in
    the tray with `?` and no BT battery path until it is *also* paired over
    Bluetooth. The good news: these keyboards keep a Bluetooth link alive even
-   while you type on 2.4G (F75 Ultra) and charge state aside, **pairing over
-   Bluetooth is free** — you don't have to *use* it.
+   while you type on 2.4G (F75 Ultra), and in any case **pairing over
+   Bluetooth is free** — you don't have to *use* that link for typing.
 
 2. **"Charging" is usually not reported.** The BLE Battery Service these
    keyboards implement carries percentage only. `state` reads as `unknown`
